@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+      <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Free Bootstrap Admin Template : Binary Admin</title>
+	<!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" />
+     <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'assets/css/font-awesome.css' %}" rel="stylesheet" />
+     <!-- MORRIS CHART STYLES-->
+    <link href="{% static 'assets/js/morris/morris-0.4.3.min.css' %}" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
+    <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" />
+     <!-- GOOGLE FONTS-->
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+            <style>
+        table {
+            background-color: #fff;
+            border-collapse: collapse;
+            width: 60%;
+            margin: 40px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #3E8E41 ;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #3E8E41 ;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .navbar-default.navbar-side {
+          height: 100vh;
+          position: fixed;
+          top: 0;
+          left: 0;
+          z-index: 1;
+          width: 250px; /* sets the width of the sidebar */
+        }
+    </style>
+</head>
+<body>
+                <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+				<li class="text-center">
+                    <img src="{% static 'assets/img/ad.jpeg' %}" class="user-image img-responsive"/>
+					</li>
+
+
+                    <li>
+                        <a class="active-menu"  href="/dashboard">Dashboard</a>
+                    </li>
+                     <li>
+                     <a href="/product">Product Management<span class="fa arrow"></span></a>
+                         <ul>
+                             <li><a href="/country">Country</a></li>
+                             <li><a href="/brand">Brand</a></li>
+                             <li><a href="/category">Category</a></li>
+                             <li><a href="/product">Product</a></li>
+                         </ul>
+                    </li>
+                    <li>
+                        <a  href="/oder_details">Order Management<span class="fa arrow"></span>t</a>
+                        <ul>
+                            <li><a href="/oder_details">Pending orders</a></li>
+                            <li><a href="/completed_orders/">completed orders</a></li>
+
+                        </ul>
+                    </li>
+                      <li  >
+                        <a  href="/delivery_p">Delivery Partners<span class="fa arrow"></span></a>
+                          <ul><li><a href="/delivery_p">Delivery Partner</a></li></ul>
+                    </li>
+                    <li  >
+                        <a  href="/enquires/">Enquiries<span class="fa arrow"></span></a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </nav>
+    <div style="text-align: right;">
+        <button style="background-color: #B2FFFC"><a href="/add_category">Add Category</a></button>
+</div>
+<table  align="center" width="60%" style="height: 100px;">
+   <tr>
+       <th>Category image</th>
+       <th>Category Name</th>
+    <th>Category Status</th>
+       <th>Action</th></tr>
+    {% for i in c%}
+       <tr>
+       {% if i.cimage %}
+            <td><img src="{{i.cimage.url}}" width="80" height="80"></td>
+        {% else %}
+            <td>No image</td>
+        {% endif %}
+        <td>{{i.category_name}}</td>
+        <td>{{i.category_status}}</td>
+          <td><a href="/edit_category/{{i.id}}">Edit </a> &nbsp; &nbsp; &nbsp;
+        <a href="/delete_category/{{i.id}}">Delete</a></td>
+        </tr>
+    {%endfor%}
+
+</table>
+
+</body>
+</html>

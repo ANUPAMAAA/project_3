@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Completed Orders</title>
+    <!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'assets/css/font-awesome.css' %}" rel="stylesheet" />
+    <!-- CUSTOM STYLES-->
+    <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" />
+    <style>
+        table {
+            background-color: #fff;
+            border-collapse: collapse;
+            width: 60%;
+            margin: 40px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #3E8E41 ;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #3E8E41 ;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .navbar-default.navbar-side {
+          height: 100vh;
+          position: fixed;
+          top: 0;
+          left: 0;
+          z-index: 1;
+          width: 250px; /* sets the width of the sidebar */
+        }
+    </style>
+
+</head>
+<body>
+                <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+				<li class="text-center">
+                    <img src="{% static 'assets/img/ad.jpeg' %}" class="user-image img-responsive"/>
+					</li>
+
+
+                    <li>
+                        <a class="active-menu"  href="/dashboard">Dashboard</a>
+                    </li>
+                     <li>
+                     <a href="/product">Product Management<span class="fa arrow"></span></a>
+                         <ul>
+                             <li><a href="/country">Country</a></li>
+                             <li><a href="/brand">Brand</a></li>
+                             <li><a href="/category">Category</a></li>
+                             <li><a href="/product">Product</a></li>
+                         </ul>
+                    </li>
+                    <li>
+                        <a  href="/oder_details">Order Management<span class="fa arrow"></span>t</a>
+                        <ul>
+                            <li><a href="/oder_details">Pending orders</a></li>
+                            <li><a href="/completed_orders/">completed orders</a></li>
+
+                        </ul>
+                    </li><li>
+                        <a  href="/delivery_p">Delivery Partners</a>
+                          <ul><li><a href="/delivery_p">Delivery Partner</a></li></ul>
+                    </li>
+                    <li  >
+                        <a  href="/enquires/">Enquiries<span class="fa arrow"></span></a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </nav>
+    <h1 align="center">Completed Orders</h1>
+    <table>
+    <tr>
+        <th>Order ID</th>
+        <th>Product</th>
+        <th>Customer Name</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Delivery Partner</th>
+    </tr>
+        {% for order in completed_orders %}
+            <tr>
+                <td>{{ order.order.id }}</td>
+                <td>{{ order.order.products }}</td>
+                <td>{{ order.order.name }}</td>
+                <td>{{ order.order.address }}</td>
+                <td>{{ order.order.phn_no }}</td>
+                <td>{{ order.delivery_partners|join:", " }}</td>
+            </tr>
+        {%endfor%}
+</table>
+</body>
+</html>

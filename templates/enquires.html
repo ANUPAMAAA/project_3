@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Bootstrap Admin Template : Binary Admin</title>
+  <!-- BOOTSTRAP STYLES-->
+  <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" />
+  <!-- FONTAWESOME STYLES-->
+  <link href="{% static 'assets/css/font-awesome.css' %}" rel="stylesheet" />
+  <!-- MORRIS CHART STYLES-->
+  <link href="{% static 'assets/js/morris/morris-0.4.3.min.css' %}" rel="stylesheet" />
+  <!-- CUSTOM STYLES-->
+  <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" />
+  <!-- GOOGLE FONTS-->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+  <style>
+    .enquiry-table {
+      width: 60%;
+      margin: 0 auto;
+      border-collapse: separate;
+      border-spacing: 10px;
+    }
+
+    .enquiry-table td {
+      padding: 10px;
+    }
+
+    .enquiry-table th {
+      padding: 10px;
+    }
+    .navbar-default.navbar-side {
+          height: 100vh;
+          position: fixed;
+          top: 0;
+          left: 0;
+          z-index: 1;
+          width: 250px; /* sets the width of the sidebar */
+        }
+  </style>
+</head>
+<body>
+  <nav class="navbar-default navbar-side" role="navigation">
+    <div class="sidebar-collapse">
+      <ul class="nav" id="main-menu">
+        <li class="text-center">
+          <img src="{% static 'assets/img/ad.jpeg' %}" class="user-image img-responsive"/>
+        </li>
+        <li>
+          <a class="active-menu" href="/dashboard">Dashboard</a>
+        </li>
+        <li>
+          <a href="/product">Product Management<span class="fa arrow"></span></a>
+          <ul>
+            <li><a href="/country">Country</a></li>
+            <li><a href="/brand">Brand</a></li>
+            <li><a href="/category">Category</a></li>
+            <li><a href="/product">Product</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="/oder_details">Order Management<span class="fa arrow"></span></a>
+        </li>
+        <li >
+          <a href="table.html">Delivery Partners<span class="fa arrow"></span></a>
+          <ul><li><a href="/delivery_p">Delivery Partner</a></li></ul>
+        </li>
+        <li >
+          <a href="/enquires/">Enquiries<span class="fa arrow"></span></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div>
+    <h1 align="center">Enquires</h1>
+    <table class="enquiry-table">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone NO</th>
+        <th>Enquiry</th>
+      </tr>
+      {% for i in eq %}
+      <tr>
+        <td>{{ i.e_name }}</td>
+        <td>{{ i.e_email }}</td>
+        <td>{{ i.e_phone }}</td>
+        <td>{{ i.e_question }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>add_product</title>
+</head>
+<body>
+<form action="/update_product/{{ep.id}}" method="post" enctype="multipart/form-data">{% csrf_token %}
+<table align="center" border="">
+    <tr>
+        <td>Product Image</td>
+        <td><input type="file" name="p_image" value="{{ep.p_image}}"></td>
+    </tr>
+      <tr>
+        <td>Product Code</td>
+        <td><input type="number" name="p_code" value="{{ep.p_code}}"></td>
+    </tr>
+        <tr>
+        <td>Product Name</td>
+        <td><input type="text" name="p_name" value="{{ep.p_name}}"></td>
+    </tr>
+        <tr>
+        <td>Price</td>
+        <td><input type="number" name="p_price" value="{{ep.p_price}}"></td>
+    </tr>
+        <tr>
+        <td>Total(include tax)</td>
+        <td><input type="number" name="total_amo" value="{{ep.total_amo}}"></td>
+    </tr>
+        <tr>
+        <td>Brand</td>
+        <td><input type="text" name="p_brand" value="{{ep.p_brand}}"></td>
+    </tr>
+    <tr>
+        <td>Category</td>
+        <td><input type="text" name="p_category" value="{{ep.p_category}}"></td>
+    </tr>
+        <tr>
+        <td>Created at</td>
+        <td><input type="date" name="p_date" value="{{ ep.p_date|date:'Y-m-d' }}"></td>
+    </tr>
+        <tr>
+        <td>Updated at</td>
+       <td><input type="date" name="up_date" value="{{ ep.up_date|date:'Y-m-d' }}"></td>
+
+    </tr>
+        <tr>
+        <td>Opening stock</td>
+        <td><input type="number" name="op_stock" value="{{ep.op_stock}}"></td>
+    </tr>
+        <tr>
+        <td>Current stock</td>
+        <td><input type="number" name="cp_stock" value="{{ep.cp_stock}}"></td>
+    </tr>
+    <tr>
+      <td>Status</td>
+      <td><input type="text" name="p_status" value="{{ep.p_status}}"></td>
+    </tr>
+        <tr>
+<tr><td>submit</td>
+<td><input type="submit" value="submit"></td></tr>
+  </table>
+  </form>
+</body>
+</html>

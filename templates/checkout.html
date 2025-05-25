@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+  <style>
+    body {
+      height: 70vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;  /* center horizontally */
+      align-items: left;      /* center vertically */
+    }
+
+    table {
+      border: 3px solid black;  /* outer border */
+      border-collapse: collapse;
+      text-align: center;       /* center content in cells */
+    }
+
+    th, td {
+      padding: 10px;
+      border: none;             /* remove inner borders */
+    }
+  </style>
+</head>
+<body>
+    <form action="/save_order/" method="POST" id="pay">
+        {% csrf_token %}
+        <table>
+                <h3>Personal Details</h3>
+
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="name" value="{{ request.session.user.name }}"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" name="email" value="{{ request.session.user.email }}"></td>
+            </tr>
+            <tr>
+                <td>Phone Number</td>
+                <td><input type="number" name="phn_no"></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td><textarea name="address"></textarea></td>
+            </tr>
+            <tr>
+                <td>Payment Method</td>
+                <td>
+                    <input type="radio" id="razorpay" name="payment_method" value="razorpay" checked>
+                    <label for="razorpay">Online Payment</label><br>
+                    <input type="radio" id="cod" name="payment_method" value="cod">
+                    <label for="cod">Cash on Delivery</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="hidden" name="order_id" value="{{razorpay_order_id}}">
+                    <input type="hidden" name="payment_id" value="{{payment_id}}">
+                </td>
+                <td>
+                    <button type="submit" id="submit-btn">Submit</button>
+                    <button id="rzp-button1" style="display: none;">Pay with Razorpay</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    var options = {
+        "key": "{{ razorpay_merchant_key }}",
+        "amount": "{{ razorpay_amount }}",
+        "currency": "{{ currency }}",
+        "name": "test",
+        "description": "Test Transaction",
+        "image": "https://example.com/your_logo",
+        "order_id": "{{razorpay_order_id}}",
+        "handler": function (response){
+            $('#pay input[name=payment_id]').val(response.razorpay_payment_id)
+            document.getElementById('pay').submit();
+        },
+        "prefill": {
+            "name": "{{ request.session.user.name }}",
+            "email": "{{ request.session.user.email }}",
+            "contact": ""
+        },
+        "notes": {
+            "address": "Razorpay Corporate Office"
+        },
+        "theme": {
+            "color": "rgb(104,222,238)"
+        }
+    };
+    var rzp1 = new Razorpay(options);
+    rzp1.on('payment.failed', function (response){
+        alert('Payment failed. Please try again.');
+    });
+
+    $(document).ready(function(){
+        $('input[name="payment_method"]').change(function(){
+            if($(this).val() == 'razorpay'){
+                $('#rzp-button1').show();
+                $('#submit-btn').hide();
+            } else {
+                $('#rzp-button1').hide();
+                $('#submit-btn').show();
+            }
+        });
+
+        document.getElementById('rzp-button1').onclick = function(e){
+            rzp1.open();
+            e.preventDefault();
+        }
+
+        $('#submit-btn').click(function(e){
+            if($('input[name="payment_method"]:checked').val() == 'cod'){
+                $('#pay').submit();
+            } else {
+                e.preventDefault();
+            }
+        });
+    });
+</script>
+
+
+</body>
+</html>
+

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <title>add brand</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            background-image: url("{% static 'images/nbg.jpeg' %}");
+            background-size: cover;
+            background-position:center;
+        }
+        .brand-container {
+            width: 400px;
+            margin: 150px auto;
+            padding: 25px;
+            border: 3px solid #0000ff; /* Blue border */
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+        }
+        td {
+            padding: 10px;
+        }
+        input[type="submit"] {
+            background-color: #0000ff; /* Blue background */
+            color: #ffffff; /* White text */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0000cc; /* Darker blue on hover */
+        }
+      caption {
+              font-size: 1.5em;
+              font-weight: bold;
+              padding-bottom: 10px;
+              color: blue;
+            }
+
+    </style>
+</head>
+<body>
+<div class="brand-container">
+<form action="/save_brand/" method="post" enctype="multipart/form-data">{% csrf_token %}
+<table align="center">
+    <tr>
+        <td>Add Logo</td>
+        <td><input type="file" name="bimage"></td>
+    </tr>
+
+    <tr>
+        <td>Enter Brand name</td>
+        <td><input type="text" name="brand_name"></td>
+    </tr>
+    <tr>
+      <td>Status</td>
+      <td><input type="text" name="brand_status"></td>
+    </tr>
+        <tr>
+<tr><td></td>
+<td><input type="submit" value="submit"></td></tr>
+  </table>
+  </form>
+</div>
+</body>
+</html>

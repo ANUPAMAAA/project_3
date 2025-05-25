@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>edit_category</title>
+</head>
+<body>
+
+<form action="/update_category/{{ec.id}}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+  <table align="center">
+        <tr>
+        <td>Category Image</td>
+        <td><input type="file" name="cimage" value="{{ec.cimage}}"></td>
+    </tr>
+    <tr>
+
+      <td>Enter Category name</td>
+
+      <td><input type="text" name="category_name" value="{{ec.category_name}}"></td>
+    </tr>
+    <tr>
+      <td>Status</td>
+      <td><input type="text" name="category_status" value="{{ec.category_status}}"></td>
+    </tr>
+<tr><td>submit</td>
+<td><input type="submit" value="submit"></td></tr>
+  </table>
+</form>
+</body>
+</html>

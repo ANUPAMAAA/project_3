@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>add_product</title>
+</head>
+<body>
+<form action="/update_dpartner/{{edp.id}}" method="post" enctype="multipart/form-data">{% csrf_token %}
+
+<table align="center" border="">
+    <tr>
+    <td>Personal ID</td>
+    <td><input type="number" name="dp_id" value="{{edp.dp_id}}"></td>
+    </tr>
+    <tr>
+        <td>Profile picture</td>
+        <td><input type="file" name="dp_pic" value="{{edp.dp_pic}}"></td>
+    </tr>
+
+        <tr>
+        <td>Name</td>
+        <td><input type="text" name="dp_name" value="{{edp.dp_name}}"></td>
+    </tr>
+    <tr>
+    <td>Email</td>
+        <td><input type="email" name="dp_email" value="{{edp.dp_email}}"></td></tr>
+        <tr>
+    <td>Ph_no</td>
+        <td><input type="number" name="dp_number" value="{{edp.dp_number}}"></td></tr>
+     <tr>
+        <td>Username</td>
+        <td><input type="text" name="dp_uname" value="{{edp.dp_uname}}"></td>
+    </tr>
+    <tr>
+        <td>password</td>
+        <td><input type="password" name="dp_password" value="{{edp.password}}"></td>
+    </tr>
+        <tr>
+        <td>Created at</td>
+        <td><input type="date" name="dp_date" value="{{edp.dp_date}}"></td>
+    </tr>
+
+        <tr>
+<tr><td>submit</td>
+<td><input type="submit" value="submit"></td></tr>
+  </table>
+  </form>
+</body>
+</html>

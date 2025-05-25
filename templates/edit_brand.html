@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>edit_brand</title>
+</head>
+<body>
+
+<form action="/update_brand/{{eb.id}}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+  <table align="center">
+        <tr>
+        <td>Brand Logo</td>
+        <td><input type="file" name="bimage" value="{{eb.bimage}}"></td>
+    </tr>
+    <tr>
+
+      <td>Enter Brand name</td>
+
+      <td><input type="text" name="brand_name" value="{{eb.brand_name}}"></td>
+    </tr>
+    <tr>
+      <td>Status</td>
+      <td><input type="text" name="brand_status" value="{{eb.brand_status}}"></td>
+    </tr>
+<tr><td>submit</td>
+<td><input type="submit" value="submit"></td></tr>
+  </table>
+</form>
+</body>
+</html>

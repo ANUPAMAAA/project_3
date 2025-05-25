@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>add_delivery_boy</title>
+        <style>
+        body {
+        font-family: Arial, sans-serif;
+        background-image: url("{% static 'images/nbg.jpeg' %}");
+        background-size: cover;
+        background-position:center;
+        }
+        .del-container {
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #0000ff; /* Blue border */
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+        }
+        td {
+            padding: 10px;
+        }
+        input[type="submit"] {
+            background-color: #0000ff; /* Blue background */
+            color: #ffffff; /* White text */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 1px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0000cc; /* Darker blue on hover */
+        }
+      caption {
+              font-size: 1.5em;
+              font-weight: bold;
+              padding-bottom: 10px;
+              color: green;
+            }
+
+</style>
+</head>
+<body>
+<div class="del-container">
+<form  action="/save_delivery/" method="post" enctype="multipart/form-data">{% csrf_token %}
+<table align="center" border="">
+    <caption>Delivery Boy Details</caption>
+    <tr>
+    <td>Personal ID</td>
+    <td><input type="number" name="dp_id"></td>
+    </tr>
+    <tr>
+        <td>Profile picture</td>
+        <td><input type="file" name="dp_pic"></td>
+    </tr>
+
+    <tr>
+        <td>Name</td>
+        <td><input type="text" name="dp_name"></td>
+    </tr>
+    <tr>
+    <td>Email</td>
+        <td><input type="email" name="dp_email"></td></tr>
+        <tr>
+    <td>Ph_no</td>
+        <td><input type="number" name="dp_number"></td></tr>
+     <tr>
+        <td>Username</td>
+        <td><input type="text" name="dp_uname"></td>
+    </tr>
+    <tr>
+        <td>password</td>
+        <td><input type="password" name="dp_password"></td>
+    </tr>
+        <tr>
+        <td>Created at</td>
+        <td><input type="date" name="dp_date"></td>
+    </tr>
+
+        <tr>
+<tr><td>submit</td>
+<td><input type="submit" value="submit"></td></tr>
+  </table>
+  </form>
+    </div>
+</body>
+</html>

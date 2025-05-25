@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("{% static 'images/nbg.jpeg' %}");
+            background-size: cover;
+            background-position:center;
+        }
+        .signup-container {
+            width: 400px;
+            margin: 150px auto;
+            padding: 25px;
+            border: 3px solid #0000ff; /* Blue border */
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+        }
+        td {
+            padding: 10px;
+        }
+        input[type="submit"] {
+            background-color: #0000ff; /* Blue background */
+            color: #ffffff; /* White text */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0000cc; /* Darker blue on hover */
+        }
+      caption {
+              font-size: 1.5em;
+              font-weight: bold;
+              padding-bottom: 10px;
+              color: blue;
+            }
+
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <form action="/save_signup/" method="POST">
+            {% csrf_token %}
+            <table>
+                <caption>signup</caption>
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" name="name"></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="email" name="email"></td>
+                </tr>
+                <tr>
+                    <td>Phone No:</td>
+                    <td><input type="number" name="mobile"></td>
+                </tr>
+                <tr>
+                    <td>Username:</td>
+                    <td><input type="text" name="uname"></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="password" name="password"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Submit"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
